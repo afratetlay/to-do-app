@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.season-image {
+    padding-top: 5%;
+    text-align: center;
+}
+
+#handle {
+    animation: handle 1s ease infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes handle {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
