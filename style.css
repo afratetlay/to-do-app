@@ -4,18 +4,25 @@
     box-sizing: border-box;
 }
 
+/* Beginning of SVG image */ 
 .season-image {
     padding-top: 5%;
-    text-align: center;
+    padding-bottom: 5%;
+    max-width: 60%;
+    max-height: 60%;
+    display: block;
+margin-left: auto;
+margin-right: auto;
+
 }
 
-#handle {
-    animation: handle 1s ease infinite;
+#clock {
+    animation: clock 1s ease infinite;
     transform-origin: center;
     transform-box: fill-box;
 }
 
-@keyframes handle {
+@keyframes clock {
     from{
         transform: rotateZ(0deg);
     }
@@ -23,3 +30,35 @@
         transform: rotateZ(360deg);
     }
 }
+
+#woman {
+    animation: woman 1s ease-in-out infinite; 
+}
+
+@keyframes woman {
+    from {
+transform: rotateX(0deg);
+    }
+    to{
+transform: rotateX(20deg);
+    }
+}
+
+.season-wrap {
+    height: 0;
+    position: relative;
+}
+
+/* End of SVG Image */ 
+
+/* Beginning of About*/
+.weather-image{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    max-width: 50%;
+    max-height: 50%;
+    text-align: right; 
+}
+
+
+/* End of About */
