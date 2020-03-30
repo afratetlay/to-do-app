@@ -6,19 +6,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Weather Forecast</title>
-	<script defer type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBatKITzDL-ekQHjOMUhzonxTBlN1GqMHA&libraries=places">
-	</script>
 	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Da+2&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<!--- Beginning of NavBar -->
+	<!--- Beginning of NavBar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">Weather</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -202,29 +200,53 @@
 		</div>
 	</div>
 
-  <!--- End of the home page -->
+	<!--- End of the home page -->
 
-  
-  <!-- <div class="main">
-    <div class="header">
-      <h1>OpenWeatherMap API</h1>
-      <p>Enter any city name in the input box below to get the data</p>
-    </div> -->
-  
-    <div class="input">
-      <input type="text" placeholder="Enter the city" class="input_text">
-      <input type="submit" value="Submit" class="submit">
+
+	<!--- Beginning of abouts page -->
+
+	<div id="feature" class="grid_12">
+		<h1>Autumn</h1>
+	</div>
+	<div class="article grid_8">
+		<img src="autumn.png" alt="autumn">
     </div>
-  </div>
+		<div class="article grid_4">
+			<p>Autumn (sometimes called fall) is one of the four seasons of the year and is the time of year that
+				transitions summer into winter. Along with the tree leaves changing color, the temperature grows colder,
+				plants stop making food, animals prepare for the long months ahead, and the daylight starts growing
+				shorter.</p>
+		</div>
+		<!--- End of Abouts page -->
 
+
+        <!--- Beginning of the Weather App -->
+        <section class="top-banner">
   <div class="container">
-    <div class="card">
-      <h1 class="name" id="name"></h1>
-      <p class="temp"></p>
-      <p class="clouds"></p>
-      <p class="desc"></p>
-    </div>
+    <h1 class="heading">Simple Weather App</h1>
+    <form>
+      <input type="text" placeholder="Search for a city" autofocus>
+      <button type="submit">SUBMIT</button>
+      <span class="msg"></span>
+    </form>
   </div>
-<script src="app.js"></script>
+</section>
+<section class="ajax-section">
+  <div class="container">
+    <ul class="cities"></ul>
+  </div>
+</section>
+<footer class="page-footer">
+  <div class="container">
+    <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">George Martsoukos</a>
+    </small>
+  </div>
+</footer>
+
+        <!--- End of the Weather App-->
+
+
+		<script src="app.js"></script>
 </body>
+
 </html>
