@@ -1,85 +1,141 @@
-/*SEARCH BY USING A CITY NAME (e.g. athens) OR A COMMA-SEPARATED CITY NAME ALONG WITH THE COUNTRY CODE (e.g. athens,gr)*/
-const form = document.querySelector(".top-banner form");
-const input = document.querySelector(".top-banner input");
-const msg = document.querySelector(".top-banner .msg");
-const list = document.querySelector(".ajax-section .cities");
-/*PUT YOUR OWN KEY HERE - THIS MIGHT NOT WORK
-SUBSCRIBE HERE: https://home.openweathermap.org/users/sign_up*/
-const apiKey = "40d62d4e5447912b7c018137f875fafb";
+const listsContainer = document.querySelector('[data-lists]')
+const newListForm = document.querySelector('[data-new-list-form]')
+const newListInput = document.querySelector('[data-new-list-input]')
+const deleteListButton = document.querySelector('[data-delete-list-button]')
+const listDisplayContainer = document.querySelector('[data-list-display-container]')
+const listTitleElement = document.querySelector('[data-list-title]')
+const listCountElement = document.querySelector('[data-list-count]')
+const tasksContainer = document.querySelector('[data-tasks]')
+const taskTemplate = document.getElementById('task-template')
+const newTaskForm = document.querySelector('[data-new-task-form]')
+const newTaskInput = document.querySelector('[data-new-task-input]')
+const clearCompleteTasksButton = document.querySelector('[data-clear-complete-tasks-button]')
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  let inputVal = input.value;
+const LOCAL_STORAGE_LIST_KEY = 'task.lists'
+const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
+let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
 
-  //check if there's already a city
-  const listItems = list.querySelectorAll(".ajax-section .city");
-  const listItemsArray = Array.from(listItems);
-
-  if (listItemsArray.length > 0) {
-    const filteredArray = listItemsArray.filter(el => {
-      let content = "";
-      //athens,gr
-      if (inputVal.includes(",")) {
-        //athens,grrrrrr->invalid country code, so we keep only the first part of inputVal
-        if (inputVal.split(",")[1].length > 2) {
-          inputVal = inputVal.split(",")[0];
-          content = el
-            .querySelector(".city-name span")
-            .textContent.toLowerCase();
-        } else {
-          content = el.querySelector(".city-name").dataset.name.toLowerCase();
-        }
-      } else {
-        //athens
-        content = el.querySelector(".city-name span").textContent.toLowerCase();
-      }
-      return content == inputVal.toLowerCase();
-    });
-
-    if (filteredArray.length > 0) {
-      msg.textContent = `You already know the weather for ${
-        filteredArray[0].querySelector(".city-name span").textContent
-      } ...otherwise be more specific by providing the country code as well 😉`;
-      form.reset();
-      input.focus();
-      return;
-    }
+listsContainer.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'li') {
+    selectedListId = e.target.dataset.listId
+    saveAndRender()
   }
+})
 
-  //ajax here
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
+tasksContainer.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'input') {
+    const selectedList = lists.find(list => list.id === selectedListId)
+    const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
+    selectedTask.complete = e.target.checked
+    save()
+    renderTaskCount(selectedList)
+  }
+})
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const { main, name, sys, weather } = data;
-      const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
-        weather[0]["icon"]
-      }.svg`;
+clearCompleteTasksButton.addEventListener('click', e => {
+  const selectedList = lists.find(list => list.id === selectedListId)
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+  saveAndRender()
+})
 
-      const li = document.createElement("li");
-      li.classList.add("city");
-      const markup = `
-        <h2 class="city-name" data-name="${name},${sys.country}">
-          <span>${name}</span>
-          <sup>${sys.country}</sup>
-        </h2>
-        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-        <figure>
-          <img class="city-icon" src="${icon}" alt="${
-        weather[0]["description"]
-      }">
-          <figcaption>${weather[0]["description"]}</figcaption>
-        </figure>
-      `;
-      li.innerHTML = markup;
-      list.appendChild(li);
-    })
-    .catch(() => {
-      msg.textContent = "Please search for a valid city 😩";
-    });
+deleteListButton.addEventListener('click', e => {
+  lists = lists.filter(list => list.id !== selectedListId)
+  selectedListId = null
+  saveAndRender()
+})
 
-  msg.textContent = "";
-  form.reset();
-  input.focus();
-});
+newListForm.addEventListener('submit', e => {
+  e.preventDefault()
+  const listName = newListInput.value
+  if (listName == null || listName === '') return
+  const list = createList(listName)
+  newListInput.value = null
+  lists.push(list)
+  saveAndRender()
+})
+
+newTaskForm.addEventListener('submit', e => {
+  e.preventDefault()
+  const taskName = newTaskInput.value
+  if (taskName == null || taskName === '') return
+  const task = createTask(taskName)
+  newTaskInput.value = null
+  const selectedList = lists.find(list => list.id === selectedListId)
+  selectedList.tasks.push(task)
+  saveAndRender()
+})
+
+function createList(name) {
+  return { id: Date.now().toString(), name: name, tasks: [] }
+}
+
+function createTask(name) {
+  return { id: Date.now().toString(), name: name, complete: false }
+}
+
+function saveAndRender() {
+  save()
+  render()
+}
+
+function save() {
+  localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
+  localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
+}
+
+function render() {
+  clearElement(listsContainer)
+  renderLists()
+
+  const selectedList = lists.find(list => list.id === selectedListId)
+  if (selectedListId == null) {
+    listDisplayContainer.style.display = 'none'
+  } else {
+    listDisplayContainer.style.display = ''
+    listTitleElement.innerText = selectedList.name
+    renderTaskCount(selectedList)
+    clearElement(tasksContainer)
+    renderTasks(selectedList)
+  }
+}
+
+function renderTasks(selectedList) {
+  selectedList.tasks.forEach(task => {
+    const taskElement = document.importNode(taskTemplate.content, true)
+    const checkbox = taskElement.querySelector('input')
+    checkbox.id = task.id
+    checkbox.checked = task.complete
+    const label = taskElement.querySelector('label')
+    label.htmlFor = task.id
+    label.append(task.name)
+    tasksContainer.appendChild(taskElement)
+  })
+}
+
+function renderTaskCount(selectedList) {
+  const incompleteTaskCount = selectedList.tasks.filter(task => !task.complete).length
+  const taskString = incompleteTaskCount === 1 ? "task" : "tasks"
+  listCountElement.innerText = `${incompleteTaskCount} ${taskString} remaining`
+}
+
+function renderLists() {
+  lists.forEach(list => {
+    const listElement = document.createElement('li')
+    listElement.dataset.listId = list.id
+    listElement.classList.add("list-name")
+    listElement.innerText = list.name
+    if (list.id === selectedListId) {
+      listElement.classList.add('active-list')
+    }
+    listsContainer.appendChild(listElement)
+  })
+}
+
+function clearElement(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild)
+  }
+}
+
+render()
