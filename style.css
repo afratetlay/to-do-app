@@ -104,7 +104,11 @@ nav {
   }
 }
 
-
+#header {
+   padding-top: 5%;
+   padding-bottom: 5%;
+    text-align: center;
+}
 
 
 
