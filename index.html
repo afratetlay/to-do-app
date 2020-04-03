@@ -12,14 +12,27 @@
 </head>
 
 <body>
-	<!--- Beginning of the NavBar -->
 
-	
-<nav class="navbar">
-  <a class="navbar-brand" href="#">
-    <img src="reading.png" class="img-fluid" width="60" height="50" class="d-inline-block align-top" alt="">
+<div id="toggleMenu" onclick="toggleMenu()"></div>
+	<nav id="menu">
+		<img src="reading.png">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Cases</a></li>
+			<li><a href="#">Personal projects</a></li>
+			<li><a href="#">About me</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!--- Beginning of the NavBar -
+
+
+	<nav class="navbar">
+		<a class="navbar-brand" href="#">
+			<img src="reading.png" class="img-fluid" width="60" height="50" class="d-inline-block align-top" alt="">
   </a>
-</nav>
+	</nav>
 
 	<!--- End of the NavBar -->
 
@@ -28,7 +41,7 @@
 
 	<div class="container-fluid">
 		<section id="header">
-        <h1 class="text-center">To Do List</h1>
+			<h1 class="text-center">To Do List</h1>
 			<img src="list.png" class="img-fluid rounded mx-auto d-block" alt="list">
     </section>
 	</div>
@@ -41,50 +54,52 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-6">
-				Whether you are working on a project or an assignment and you need to write down a
+            <tr>
+				<blockquote>Whether you are working on a project or an assignment and you need to write down a
 				list of
-				things to do or to include into your studies then this to do list is perfect for you not to forget.
+				things to do or to include into your studies then this to do list is perfect for you not to forget.</blockquote>
 			</div>
+            </tr>
 			<div class="col-sm-6">
 				<img src="user-flow.png" class="img-fluid" alt="" height="350" width="500">
 				</div>
 			</div>
 		</div>
 
-	<!--- End of the Project Section -->
+		<!--- End of the Project Section -->
 
 
-    <!--- Beginning of the Recipe Section -->
+		<!--- Beginning of the Recipe Section -->
 
-    <div class="container-fluid">
-        <section id="recipe">
-		<div class="row">
-			<div class="col-sm-6">
-				<img src="recipe.png" class="img-fluid" alt="recipe" height="350" width="500">
+		<div class="container-fluid">
+			<section id="recipe">
+				<div class="row">
+					<div class="col-sm-6">
+						<img src="recipe.png" class="img-fluid" alt="recipe" height="350" width="500">
 			</div>
-			<div class="col-sm-6">
-				When you are learning to cook and research on recipes you will like to cook, a to do list
-					is
-					the perfect reminder as to what you need to purchase in order to make that perfect meal.
-				</div>
-			</div>
-            </section>
+						<div class="col-sm-6">
+							When you are learning to cook and research on recipes you will like to cook, a to do list
+							is
+							the perfect reminder as to what you need to purchase in order to make that perfect meal.
+						</div>
+					</div>
+			</section>
 		</div>
 
-	<!--- End of the Recipe Section -->
+		<!--- End of the Recipe Section -->
 
 
-	<!--- Beginning of the List Section -->
+		<!--- Beginning of the List Section -->
 		<div class="container-fluid">
 			<section id="list">
 				<img src="to-do-list.png" class="img-fluid" alt="recipe" height="350" width="500">
 				<p id=""></p>
 			</section>
 		</div>
-	<!--- End of the List Section -->
+		<!--- End of the List Section -->
 
 
-	<!--- Beginning of the To Do List -->
+		<!--- Beginning of the To Do List -->
 		<main>
 			<div class="container">
 				<h1 class="app-title">To Do List </h1>
@@ -92,7 +107,7 @@
 
 				<form class="js-form">
 					<input autofocus type="text" aria-label="Enter a new todo item" placeholder="E.g. Build a web app" class="js-todo-input">
-    </form>
+        </form>
 			</div>
 		</main>
 
@@ -135,12 +150,12 @@
 			</defs>
 		</svg>
 
-    <!--- End of the To Do List -->
+		<!--- End of the To Do List -->
 
 
-	<!--- Script Tags -->
-    
-        <script defer src="app.js"></script>
+		<!--- Script Tags -->
+
+		<script defer src="app.js"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 		</script>

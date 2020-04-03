@@ -1,16 +1,20 @@
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-const links = document.querySelectorAll(".nav-links li");
+/* Beginning of the Toggle NavBar Menu */
 
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  links.forEach(link => {
-    link.classList.toggle("fade");
-  });
-});
+var toggleStatus = 1;
+		function toggleMenu() {
+			if (toggleStatus == 1) {
+				document.getElementById("menu").style.left = "-240px";
+				toggleStatus = 0;
+			} else if (toggleStatus == 0) {
+				document.getElementById("menu").style.left = "0px";
+				toggleStatus = 1;
+			}
+        }
+        
+/* End of the Toggle NavBar Menu */
 
 
-
+/* Beginning of the To Do List */
 let todoItems = [];
 
 function addTodo(text) {
@@ -79,3 +83,5 @@ list.addEventListener('click', event => {
   }
 
 });
+
+/* End of the To Do List */
