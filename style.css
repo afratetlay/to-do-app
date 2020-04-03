@@ -11,11 +11,15 @@ body {
  line-height: 1.4;
 }
 
+.text-center {
+    color:blueviolet; 
 
+}
 
 #header {
    padding-top: 5%;
    padding-bottom: 5%;
+   color:blueviolet
 }
 
 
