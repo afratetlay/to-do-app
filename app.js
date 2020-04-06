@@ -25,6 +25,7 @@ text.reveal(4000);
 
 /* End of the To Do List Header */ 
 
+
 /*modal*/
 
 // Get the modal
