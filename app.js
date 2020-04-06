@@ -13,6 +13,20 @@ var toggleStatus = 1;
         
 /* End of the Toggle NavBar Menu */
 
+/* Beginning of the To Do List */
+
+const text = baffle(".fancy");
+text.set({
+    characters : ">▒▓ >▓▒█▒ ▓▓▒▓▓ ▒█< █░▒▓░ ▓▒<░ ▒██ <▓█/ ///▓",
+    speed: 120
+});
+text.start();
+text.reveal(4000);
+
+/* End of the To Do List */ 
+
+
+
 
 /* Beginning of the To Do List */
 let todoItems = [];

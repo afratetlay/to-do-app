@@ -73,12 +73,21 @@ nav ul li a {
 }
 
 
+
+
+
+
 .text-center {
     color:blueviolet; 
 
 }
 
 /* End of the Toggle NavBar */
+
+
+span.fade {
+    color:blueviolet
+}
 
 #header {
    padding-top: 5%;
