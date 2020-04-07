@@ -13,6 +13,33 @@ var toggleStatus = 1;
         
 /* End of the Toggle NavBar Menu */
 
+/* Beginning of the type Writing */
+
+
+
+/* End of the Type Writing */
+
+/* Beginning of the Youtube video */ 
+
+var elem = document.getElementById("myvideo");
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+/* End of the Youtube Video */ 
+
+/* Beginning of the Redirect */ 
+function myFunction() {
+  location.replace("https://www.thewonderforest.com/the-ultimate-blogger-to-do-list")
+}
+/* End of the Redirect */ 
 /* Beginning of the To Do List Header */
 
 const text = baffle(".fancy");
@@ -127,3 +154,29 @@ list.addEventListener('click', event => {
 
 /* End of the To Do List */
 
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
