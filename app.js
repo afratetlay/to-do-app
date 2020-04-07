@@ -14,7 +14,17 @@ var toggleStatus = 1;
 /* End of the Toggle NavBar Menu */
 
 /* Beginning of the type Writing */
+var i = 0;
+var txt = 'Make it fast to add and organize tasks. Ideally a task is added and categorized in a couple taps or keystrokes.';
+var speed = 50;
 
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
 
 
 /* End of the Type Writing */
