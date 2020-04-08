@@ -15,7 +15,7 @@ var toggleStatus = 1;
 
 /* Beginning of the type Writing */
 var i = 0;
-var txt = 'Make it fast to add and organize tasks. Ideally a task is added and categorized in a couple taps or keystrokes.';
+var txt = 'Make it fast to add and organise tasks. Ideally a task is added and categorized in a couple taps or keystrokes.';
 var speed = 50;
 
 function typeWriter() {
@@ -47,7 +47,7 @@ function openFullscreen() {
 
 /* Beginning of the Redirect */ 
 function myFunction() {
-  location.replace("https://www.thewonderforest.com/the-ultimate-blogger-to-do-list")
+  location.replace ("https://www.thewonderforest.com/the-ultimate-blogger-to-do-list", "_blank")
 }
 /* End of the Redirect */ 
 /* Beginning of the To Do List Header */
